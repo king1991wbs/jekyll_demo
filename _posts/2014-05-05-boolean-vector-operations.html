@@ -1,6 +1,6 @@
 ---
-layout:default
-title:boolean vector operations
+layout: default
+title: boolean vector operations
 ---
 
 <p>
@@ -17,8 +17,8 @@ title:boolean vector operations
 <p>
     当然，这也是我的第一反应。。。这的确是最直接的方法，不是么？
     但是，当我今天读《optiming cpp》这本书的boolean vector operation这一节时，我才知道还有更加巧妙的办法。书本的原文摘录在这里，供读者参考：
- An integer may be used as a Boolean vector.For example,if a and b are 32-bit integers,then the expression y = a & b; will make 32 AND-operations 
- in just one clock cycle.The operators &,|,^,~ are useful for Boolean vector operations.
+ An integer may be used as a Boolean vector.For example,if a and b are 32-bit integers,then the expression y = a &amp; b; will make 32 AND-operations 
+ in just one clock cycle.The operators &amp;,|,^,~ are useful for Boolean vector operations.
    这段话的意思就是说我们可以用一个integer类型的整数去表达一个整数数组或者说向量。
    读完这段话后，突然感觉心情有点小激动。。。
    用这种方法，我们上面的代码就可以改写成这样：
@@ -27,12 +27,12 @@ title:boolean vector operations
    //
    这个做法真是不能在巧了不是吗？
    当然，有的同学会说“那我要使用数组中的某个值时该怎么办？”
-   这个当然没问题啦。我们在之后的程序中如果需要用数组的某个之的话，就可以同过&操作来得到我们想要的值。比如，现在我需要知道第二个同学
+   这个当然没问题啦。我们在之后的程序中如果需要用数组的某个之的话，就可以同过&amp;操作来得到我们想要的值。比如，现在我需要知道第二个同学
    {对应数组列表中从右数第二个元素}是否通过，我们就可以这样：
    //
-   int second = pass & 2；
+   int second = pass &amp; 2；
    //
-   这样子我们就可以知道第二个同学是否通过了不是吗？我们还可以通过>>以为操作符来一次获得数组中的每一个元素值。。。
+   这样子我们就可以知道第二个同学是否通过了不是吗？我们还可以通过&gt;&gt;以为操作符来一次获得数组中的每一个元素值。。。
    好了，先写道这里吧，日后有时间再完善以下。。。
 </p>
 
