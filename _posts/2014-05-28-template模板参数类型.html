@@ -27,7 +27,8 @@ layout: post_show
 <p>What you have there is of the last kind. It's a compile time constant (so-called constant expression) and is of type integer or enumeration. After looking it up in the standard, i had to move class templates up into the types section - even though templates are not types. But they are called type-parameters for the purpose of describing those kinds nonetheless. You can have pointers (and also member pointers) and references to objects/functions that have external linkage (those that can be linked to from other object files and whose address is unique in the entire program). Examples:</p>
 
 <p>Template type parameter:</p>
-te&lt;typename T&gt;
+
+<pre><code>template&lt;typename T&gt;
 struct Container {
     T t;
 
@@ -49,7 +50,7 @@ struct Vector {
 Vector&lt;3&gt; test;
 </code></pre>
 
-<p>Template pointer parameter (passing a pointer to a function)</p>
+<p style="text-indent: 2em;">Template pointer parameter (passing a pointer to a function)</p>
 
 <pre><code>template&lt;void (*F)()&gt;
 struct FunctionWrapper {
@@ -88,7 +89,11 @@ struct Pool {
 
 // pass the template "allocator" as argument. 
 template&lt;typename T&gt;
-struct allocator { static T * allocate(size_t n) { return 0;  }  };
+struct allocator
+{
+static T * allocate(size_t n) 
+{ return 0;  } 
+};
 Pool&lt;allocator&gt; test;
 </code></pre>
 
