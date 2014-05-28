@@ -1,0 +1,113 @@
+---
+layout: post_show
+---
+
+<h2>{{page.title}}</h2>
+<p style="background-color:red;text-indent: 2em;">
+文本转自stackoverflow,我只是搬运工。。。</br>
+原文地址请看：<a href="http://stackoverflow.com/questions/499106/what-does-template-unsigned-int-n-mean">--这里--</a>
+</p>
+<p style="text-indent:2em;">
+Yes, it is a non-type parameter. You can have several kinds of template parameters
+</p>
+
+<ul>
+    <li>Type Parameters. 
+    <ul>
+        <li>Types</li>
+        <li>Templates (only classes, no functions)</li>
+    </ul></li>
+    <li>Non-type Parameters
+    <ul>
+        <li>Pointers</li>
+        <li>References</li>
+        <li>Integral constant expressions</li>
+    </ul></li>
+</ul>
+<p>What you have there is of the last kind. It's a compile time constant (so-called constant expression) and is of type integer or enumeration. After looking it up in the standard, i had to move class templates up into the types section - even though templates are not types. But they are called type-parameters for the purpose of describing those kinds nonetheless. You can have pointers (and also member pointers) and references to objects/functions that have external linkage (those that can be linked to from other object files and whose address is unique in the entire program). Examples:</p>
+
+<p>Template type parameter:</p>
+te&lt;typename T&gt;
+struct Container {
+    T t;
+
+};
+
+// pass type "long" as argument.
+Container&lt;long&gt; test;
+</code></pre>
+
+<p>Template integer parameter:</p>
+
+<pre><code>template&lt;unsigned int S&gt;
+struct Vector {
+    unsigned char bytes[S];
+
+};
+
+// pass 3 as argument.
+Vector&lt;3&gt; test;
+</code></pre>
+
+<p>Template pointer parameter (passing a pointer to a function)</p>
+
+<pre><code>template&lt;void (*F)()&gt;
+struct FunctionWrapper {
+    static void call_it() { F();  }
+
+};
+
+// pass address of function do_it as argument.
+void do_it() {  }
+FunctionWrapper&lt;&amp;do_it&gt; test;
+</code></pre>
+
+<p>Template reference parameter (passing an integer)</p>
+
+<pre><code>template&lt;int &amp;A&gt;
+struct SillyExample {
+    static void do_it() { A = 10;  }
+
+};
+
+// pass flag as argument
+int flag;
+SillyExample&lt;flag&gt; test;
+</code></pre>
+
+<p>Template template parameter. </p>
+
+<pre><code>template&lt;template&lt;typename T&gt; class AllocatePolicy&gt;
+struct Pool {
+    void allocate(size_t n) {
+            int *p = AllocatePolicy&lt;int&gt;::allocate(n);
+                
+    }
+
+};
+
+// pass the template "allocator" as argument. 
+template&lt;typename T&gt;
+struct allocator { static T * allocate(size_t n) { return 0;  }  };
+Pool&lt;allocator&gt; test;
+</code></pre>
+
+<p>A template without any parameters is not possible. But a template without any explicit argument is possible - it has default arguments:</p>
+
+<pre><code>template&lt;unsigned int SIZE = 3&gt;
+struct Vector {
+    unsigned char buffer[SIZE];
+
+};
+
+Vector&lt;&gt; test;
+</code></pre>
+
+<p>Syntactically, <code>template&lt;&gt;</code> is reserved to mark an explicit template specialization, instead of a template without parameters:</p>
+
+<pre><code>template&lt;&gt;
+struct Vector&lt;3&gt; {
+    // alternative definition for SIZE == 3
+
+};
+</code></pre>
