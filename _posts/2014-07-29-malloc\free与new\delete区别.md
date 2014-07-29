@@ -1,9 +1,9 @@
 ---
-malloc/free与new/delete区别
+malloc\\free与new\\delete区别
 ---
 
 本文整理自《王道--程序员求职宝典》
-=====
+========================
 
 相同点：都可用于申请动态内存和释放内存
 
@@ -29,6 +29,7 @@ delete的执行过程：首先，对sp指指向的对象运行适当的析构函
 void *malloc(size_t size);
 
 </code>
+
 用malloc申请一块长度为length的整数类型内存，程序如下：
 <code>
 int *p = (int *)malloc(sizeof(int)*length);
