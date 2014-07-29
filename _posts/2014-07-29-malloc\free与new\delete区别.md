@@ -58,7 +58,7 @@ int *p = (int *)malloc(sizeof(int)*length);
 <pre><code>Obj *objects = new Obj[100];//创建100个动态对象</code></pre>
 不能写成：
 <pre><code>Obj *objects = new Obj[100](1);//创建100个动态对象的同时赋予初值1</code></pre>
-在用delete释放对象数组时，留意不要丢了符号"\[ \]"。例如：
+在用delete释放对象数组时，留意不要丢了符号“\[ \]”。例如：
 <pre>
 <code>
 delete [] objects;//正确用法
