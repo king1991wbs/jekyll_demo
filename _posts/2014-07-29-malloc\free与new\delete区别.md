@@ -1,5 +1,5 @@
 ---
-malloc\\free与new\\delete区别
+layout: post
 ---
 
 本文整理自《王道--程序员求职宝典》
