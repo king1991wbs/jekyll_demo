@@ -11,7 +11,7 @@ malloc\\free与new\\delete区别
 
 (1) 操作对象不同。
 
-malloc与free是c \/c++语言的标准库函数，new \/delete是c++的运算符。
+malloc与free是c/c++语言的标准库函数，new/delete是c++的运算符。
 
 由于malloc\/free是库函数而不是运算符，不在编译器控制权限之内，所以无法执行构造函数和析构函数。
 
