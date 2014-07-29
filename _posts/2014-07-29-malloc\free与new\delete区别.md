@@ -81,4 +81,4 @@ int *p = (int *)malloc(2*sizeof(double));//编译时无法指出错误
 (4)new调用operator new 分配足够的空间，并调用相关对象的构造函数，而malloc不能调用构造函数；delete将调用该实例的析构函数，然后调用类的operator 
 delete,以释放该实例占用的空间，而free不能调用析构函数；
 
-(5)malloc/free需要库文件支持，new\/delete则不需要。
+(5)malloc/free需要库文件支持，new/delete则不需要。
