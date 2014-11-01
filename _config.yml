@@ -6,6 +6,6 @@ paginate: 8
 permalink: /:title
 
 title: wilson
-url: http://king1991wbs.github.com
+url: http://king1991wbs.github.com/wilson
 feed: /atom.xml
-author_info: <a href="http://king1991wbs.github.com/">wilson</a>
+author_info: <a href="http://king1991wbs.github.com/wilson/">wilson</a>
