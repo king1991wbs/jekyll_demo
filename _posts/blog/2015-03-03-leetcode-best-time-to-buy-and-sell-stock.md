@@ -5,7 +5,7 @@ category : blog
 description : leetcode
 ---
 
-½ñÌìÔÚË¢leetcode  best time to buy and sell stockÕâÌâ£¬Æð³õÎÒÌá½»µÄÕâÑùÒ»·Ý½á¹û£º
+今天在刷leetcode  best time to buy and sell stock这题，起初我提交的这样一份结果：
 
 <pre><code>
 class Solution{
@@ -28,13 +28,13 @@ public:
 };
 </code></pre>
 
-½á¹û×ÜÊÇÌáÊ¾ÊäÈëÎª¿ÕµÄÊ±ºòrun time error...ÓÚÊÇ´ò¿ªgdb¿ªÊ¼µ÷ÊÔ£¬·¢ÏÖ¾ÍËãprices´«ÈëÒ»¸ö¿ÕµÄvector¶ÔÏóÒ²»á½øÈëforÑ­»·ÄÚ²¿¡£
+结果总是提示输入为空的时候run time error...于是打开gdb开始调试，发现就算prices传入一个空的vector对象也会进入for循环内部。
 
-·Ç³£Ïë²»Í¨£¬ÓÚÊÇµ½cppreferenceÉÏ²évector.size()º¯ÊýµÄ½è¿ÚÇé¿ö£¬µÃµ½ÈçÏÂ½âÊÍ£º
+非常想不通，于是到cppreference上查vector.size()函数的借口情况，得到如下解释：
 <pre><code>
 size_type size() const;
 </code></pre>
-Ô­À´size()º¯ÊýµÄ·µ»ØÖµÀàÐÍÊÇsize_type£¬ÓÚÊÇ²Âµ½ÁËÄÜÊÇÔÚgccÏÂÎªÎÞ·ûºÅÊýÖµÀàÐÍ¡£Èç´Ë±ã½âÊÍµÃÍ¨ÁË¡£ÓÚÊÇÌá½»ÐÂµÄ´úÂë£¬²»³öËùÁÏac³É¹¦¡£
+原来size()函数的返回值类型是size_type，于是猜到了能是在gcc下为无符号数值类型。如此便解释得通了。于是提交新的代码，不出所料ac成功。
 
 <pre><code>
 class Solution{
