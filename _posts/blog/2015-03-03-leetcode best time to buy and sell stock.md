@@ -18,7 +18,7 @@ public:
 		int maxP = 0;
 		for(int i = 0; i &lt; prices.size() - 1; ++i){
 			profit += prices[i+1] - prices[i];
-			if(profit <= 0){
+			if(profit &lt;= 0){
 				profit = 0;
 				continue;
 			}
