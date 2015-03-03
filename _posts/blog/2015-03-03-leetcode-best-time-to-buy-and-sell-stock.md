@@ -1,6 +1,6 @@
 ---
 layout : post
-title : best time buy and sell stock
+title : best
 category : blog
 description : leetcode
 ---
